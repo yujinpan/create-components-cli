@@ -1,6 +1,7 @@
-import replaceContent from './replace';
-
-const fs = require('fs');
+/**
+ * 入口
+ */
+import fileHandle from './file_handle';
 
 const scriptsArgs = process.env.npm_package_scripts_ng.split(' ').slice(2);
 
@@ -27,12 +28,6 @@ if (projectTypes.indexOf(projectType) === -1) {
 }
 
 // 获取第三个参数 - 名称 project_name
-const projectName = scriptsArgs[2] || 'project_name';
+const projectName = scriptsArgs[2] || 'projectName';
 
-// 读取文件
-fs.readFile(__dirname + '/index.js', function(err, data) {
-    if (err) {
-        throw err;
-    }
-    console.log(replaceContent(data.toString(), 'const', 'let'));
-});
+fileHandle(projectType, projectName);

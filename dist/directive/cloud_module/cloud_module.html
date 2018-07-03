@@ -1,0 +1,14 @@
+<div class="cloud-module-wrap">
+    <div class="cloud-module-header">
+        <a class="cloud-module-header-btn pull-left" ng-click="cloudModule.close()">取消</a>
+        <h4>手动录入</h4>
+        <a class="cloud-module-header-btn pull-right active" ng-click="cloudModule.submit()">确定</a>
+        <a content-select count="{{cloudModule.type === 'add' ? 0 : 1}}" submit="cloudModule.add(result)" class="cloud-module-header-btn cloud-module-header-btn-last pull-right active">选取内容</a>
+    </div>
+    <div class="cloud-module-content" cloudscrollbar>
+
+    </div>
+    <div class="cloud-module-loading" ng-if="loading">
+        <i class="cloud-icon-ui-loading-gray"></i>
+    </div>
+</div>

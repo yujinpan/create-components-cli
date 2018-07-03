@@ -5,6 +5,8 @@
     "main": "./src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
+        "clean": "rm -rf ./dist && mkdir dist",
+        "preng": "npm run clean",
         "ng": "babel-node ./src/index.js"
     },
     "author": "",
