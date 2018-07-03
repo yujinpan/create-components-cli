@@ -31,8 +31,8 @@ function getNameArr(name) {
 
     // 去掉首字母大写
     if (testUpperCase(name.charAt(0))) {
-        let text = nameArr.slice(0, 1);
-        nameArr = text.toLowerCase() + nameArr.slice(1);
+        let text = name.charAt(0);
+        name = text.toLowerCase() + name.slice(1);
     }
 
     while (index < name.length) {
