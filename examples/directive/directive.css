@@ -1,3 +1,5 @@
+/* 覆盖弹窗的样式 */
+
 .componentClassName-modal {
     display: -webkit-flex !important;
     display: flex !important;
@@ -75,6 +77,8 @@
 .componentClassName-header>a.active {
     color: #007aff;
 }
+
+/* content区 */
 
 .componentClassName-content {
     position: relative;

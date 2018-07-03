@@ -4,6 +4,7 @@
 import replaceContent from './replace';
 import componentNames from './name_handle';
 
+const exec = require('child_process').exec;
 const fs = require('fs');
 
 /**
@@ -19,34 +20,37 @@ export default (type, name) => {
 };
 
 /**
- * 生成组件包 - **需要重构**
+ * 生成组件包
  * 
  * @param {string} examplePath 实例文件夹的路径
  * @param {string} path 生成目录文件夹的路径
  */
 function createFiles(examplePath, path, name) {
+
+    // 获取文件路径的名称 (projectA => project_a)
     let filealias = componentNames.componentFolderName(componentNames.getNameArr(name));
+
     // 读取实例文件夹文件
-    fs.readdir(examplePath, (err, files) => {
-        if (err) throw err;
-        // 创建组件文件夹
-        fs.mkdir(path, (err) => {
+    let files = fs.readdirSync(examplePath);
+
+    // 创建组件文件夹
+    fs.mkdirSync(path);
+    fs.mkdirSync(path + '/' + filealias);
+
+    // 读写文件
+    files.forEach((filename) => {
+        let filetype = filename.replace(/^[^.]*/, '');
+        fs.readFile(examplePath + '/' + filename, (err, data) => {
             if (err) throw err;
-            fs.mkdir(path + '/' + filealias, (err) => {
-                if (err) throw err;
-                files.forEach((filename) => {
-                    let filetype = filename.replace(/^[^.]*/, '');
-                    // 读取文件内容
-                    fs.readFile(examplePath + '/' + filename, (err, data) => {
-                        if (err) throw err;
-                        data = replaceContent(data.toString(), name);
-                        // 写入文件
-                        fs.writeFile(path + '/' + filealias + '/' + filealias + filetype, data, () => {
-                            console.log(filealias + filetype + ' 写入成功');
-                        });
-                    });
-                });
+            data = replaceContent(data.toString(), name);
+
+            // 写入文件
+            fs.writeFile(path + '/' + filealias + '/' + filealias + filetype, data, () => {
+                console.log(filealias + filetype + ' 写入成功');
             });
         });
     });
+
+    // 打开资源文件夹
+    exec('start ' + path);
 }
