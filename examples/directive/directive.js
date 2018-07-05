@@ -9,17 +9,12 @@ define([
 ], function() {
     'use strict';
 
-    // 创建modal
-    cloudModule.compileProvider.directive('componentName', [
+    // 服务方式调用
+    cloudModule.provide.service('componentNameService', [
         '$modal',
         function($modal) {
             return {
-                strict: 'AE',
-                scope: {
-                    submit: '&',
-                    data: '=?',
-                },
-                link: function(scope, element, attr) {
+                open: function(data) {
                     var openParams = {
                         templateUrl: '/assets/module/[[CloudModule]]/component/componentFolderName/componentFolderName.html',
                         controller: 'componentClassName-controller',
@@ -27,21 +22,43 @@ define([
                         resolve: {
                             data: function() {
                                 return {
-                                    data: scope.data
+                                    data: data
                                 };
                             }
                         }
                     };
+                    return $modal.open(openParams).result;
+                }
+            };
+        }
+    ]);
 
-                    element.on('click', function() {
-                        $modal.open(openParams).result.then(function(res) {
+    // 指令方式调用
+    cloudModule.compileProvider.directive('componentName', [
+        'componentNameService',
+        function(componentNameService) {
+            return {
+                strict: 'AE',
+                scope: {
+                    submit: '&',
+                    data: '=?',
+                },
+                link: function(scope, element, attr) {
+                    element.bind('click', open);
+
+                    scope.$on('$destory', function() {
+                        element.unbind('click');
+                    });
+
+                    function open() {
+                        componentNameService.open(scope.data).then(function(res) {
                             if (res) {
                                 scope.submit({
                                     result: res
                                 });
                             }
                         });
-                    });
+                    }
                 }
             };
         }
