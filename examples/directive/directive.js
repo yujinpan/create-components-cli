@@ -1,22 +1,22 @@
 /**
  * (function)
- * 引用路径 '/assets/module/[[CloudModule]]/component/componentFolderName/componentFolderName.js',
+ * 引用路径 '/assets/module/[CloudModule]/component/[componentFolderName]/[componentFolderName].js',
  */
 define([
     '/assets/cloud/ui/scrollbar/scrollbar.js',
     '/assets/cloud/ui/modal/modal.js',
-    'css!/assets/module/[[CloudModule]]/component/componentFolderName/componentFolderName.css',
+    'css!/assets/module/[CloudModule]/component/[componentFolderName]/[componentFolderName].css',
 ], function() {
     'use strict';
 
     // 服务方式调用
-    cloudModule.provide.service('componentNameService', [
+    cloudModule.provide.service('[componentNameService]', [
         '$modal',
         function($modal) {
             return {
                 open: function(data) {
                     var openParams = {
-                        templateUrl: '/assets/module/[[CloudModule]]/component/componentFolderName/componentFolderName.html',
+                        templateUrl: '/assets/module/[CloudModule]/component/[componentFolderName]/[componentFolderName].html',
                         controller: 'componentClassName-controller',
                         windowClass: 'componentClassName-modal',
                         resolve: {
@@ -34,9 +34,9 @@ define([
     ]);
 
     // 指令方式调用
-    cloudModule.compileProvider.directive('componentName', [
-        'componentNameService',
-        function(componentNameService) {
+    cloudModule.compileProvider.directive('[componentName]', [
+        '[componentNameService]',
+        function([componentNameService]) {
             return {
                 strict: 'AE',
                 scope: {
@@ -51,7 +51,7 @@ define([
                     });
 
                     function open() {
-                        componentNameService.open(scope.data).then(function(res) {
+                        [componentNameService].open(scope.data).then(function(res) {
                             if (res) {
                                 scope.submit({
                                     result: res
@@ -65,7 +65,7 @@ define([
     ]);
 
     // modal的控制器
-    cloudModule.controllerProvider.register('componentClassName-controller', [
+    cloudModule.controllerProvider.register('[componentClassName]-controller', [
         '$scope', '$modalInstance', '$http', 'Modal', 'data',
         function($scope, $modalInstance, $http, Modal, data) {
 

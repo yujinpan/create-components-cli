@@ -1,11 +1,11 @@
 /* 覆盖弹窗的样式 */
 
-.componentClassName-modal {
+.[componentClassName]-modal {
     display: -webkit-flex !important;
     display: flex !important;
 }
 
-.componentClassName-modal .modal-dialog {
+.[componentClassName]-modal .modal-dialog {
     margin: auto !important;
     display: block !important;
     width: 720px !important;
@@ -14,14 +14,14 @@
     padding-bottom: 0 !important;
 }
 
-.componentClassName-modal.transform-clear .modal-dialog {
+.[componentClassName]-modal.transform-clear .modal-dialog {
     -webkit-transform: none !important;
     transform: none !important;
     -webkit-transition: none !important;
     transition: none !important;
 }
 
-.componentClassName-modal .modal-content {
+.[componentClassName]-modal .modal-content {
     height: 100% !important;
     width: 100% !important;
     margin: 0 !important;
@@ -32,7 +32,7 @@
     padding: 0;
 }
 
-.componentClassName-wrap {
+.[componentClassName]-wrap {
     height: 100%;
     font-size: 14px;
     line-height: 1;
@@ -40,9 +40,9 @@
     border-radius: 3px;
 }
 
-/* componentClassName-header */
+/* [componentClassName]-header */
 
-.componentClassName-header {
+.[componentClassName]-header {
     padding: 11px 16px;
     font-size: 16px;
     background: #f6f6f6;
@@ -51,7 +51,7 @@
     overflow: hidden;
 }
 
-.componentClassName-header>h4 {
+.[componentClassName]-header>h4 {
     font-weight: bold;
     margin: 0;
     color: #666;
@@ -65,22 +65,22 @@
     top: 0;
 }
 
-.componentClassName-header>a {
+.[componentClassName]-header>a {
     color: #666;
     font-size: 14px;
 }
 
-.componentClassName-header>a.componentClassName-header-btn-last {
+.[componentClassName]-header>a.[componentClassName]-header-btn-last {
     margin-right: 16px;
 }
 
-.componentClassName-header>a.active {
+.[componentClassName]-header>a.active {
     color: #007aff;
 }
 
 /* content区 */
 
-.componentClassName-content {
+.[componentClassName]-content {
     position: relative;
     padding: 20px 16px 10px;
     max-height: 580px;
@@ -88,7 +88,7 @@
     overflow: hidden;
 }
 
-.componentClassName-loading {
+.[componentClassName]-loading {
     display: -webkit-flex;
     display: flex;
     align-items: center;

@@ -3,16 +3,22 @@
  * 对应的方法来获取别名
  */
 export default {
-    data: ['componentName', 'componentFolderName', 'componentClassName'],
+    data: ['CloudModule', 'componentName', 'componentFolderName', 'componentClassName', 'componentNameService'],
     getNameArr: getNameArr,
-    componentName(nameArr) {
+    'CloudModule' (nameArr) {
+        return nameArr[0];
+    },
+    'componentName' (nameArr) {
         return nameArr.join('');
     },
-    componentFolderName(nameArr) {
+    'componentFolderName' (nameArr) {
         return nameArr.join('_').toLowerCase();
     },
-    componentClassName(nameArr) {
+    'componentClassName' (nameArr) {
         return nameArr.join('-').toLowerCase();
+    },
+    'componentNameService' (nameArr) {
+        return nameArr.join('') + 'Service';
     }
 };
 

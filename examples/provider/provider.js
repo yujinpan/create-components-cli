@@ -1,7 +1,7 @@
 /**
  * (function)
  * 
- * 引用路径'/assets/module/[[CloudModule]]/provider/componentName.js'
+ * 引用路径'/assets/module/[CloudModule]/provider/[componentNameService].js'
  */
 define([
     // 依赖
@@ -9,7 +9,7 @@ define([
     'use strict';
 
     // provider
-    cloudModule.provider.provider('componentName', [
+    cloudModule.provider.provider('[componentNameService]', [
         '$http',
         function($http) {
             var id = 0;
@@ -35,12 +35,12 @@ define([
 
     // 下面是实例
     // config: set id
-    cloudModule.config(function(componentName) {
-        componentName.setId(1);
+    cloudModule.config(function([componentNameService]) {
+        [componentNameService].setId(1);
     });
 
     // controller: get id
-    cloudModule.register.controller(function(componentName) {
-        componentName.getId();
+    cloudModule.register.controller(function([componentNameService]) {
+        [componentNameService].getId();
     });
 });

@@ -1,13 +1,13 @@
 /**
  * (function)
  * 
- * 引用路径'/assets/module/[[CloudModule]]/factory/componentName.js'
+ * 引用路径'/assets/module/[CloudModule]/factory/[componentNameService].js'
  */
 define([
     // 依赖
 ], function() {
     'use strict';
-    cloudModule.provide.factory('componentName', [
+    cloudModule.provide.factory('[componentNameService]', [
         '$http',
         function($http) {
             return {
